@@ -18,24 +18,60 @@ class TestView: UIView,UITextFieldDelegate,DetectBackspaceDelegate {
         static let underLineHeight: Int             = 1
     }
     
+    enum textFieldLayout: String {
+        case BOXED, UNDERLINED
+    }
+    
     @IBOutlet var contentView: UIView!
     var arrayOfTextFields : [DetectBackspaceTextField] = []
     var arrayOfUnderline : [UIView] = []
     
     var posX : Int = 0
     var posY : Int = 0
-    var textFieldWidth : Int = TextfieldConstants.textFieldWidth
-    var textFieldHeight : Int = TextfieldConstants.textFieldHeight
-    var textfieldSpacing : Int = TextfieldConstants.textFieldSpacing
+    
     var isBoxedEnabled : Bool = false
     var isUnderlineEnabled : Bool = false
     
     let dummyTextField = DetectBackspaceTextField()
     @IBOutlet weak var touchInterceptorView: UIView!
     
-    var textFieldborderColorSet = UIColor.clear.cgColor
-    var underlineColorSet = UIColor.clear
-    var textFieldBorderWidth : CGFloat = 1
+    var textFieldWidth : Int = TextfieldConstants.textFieldWidth{
+        didSet {
+            setTextFieldWidth()
+        }
+    }
+    var textFieldHeight : Int = TextfieldConstants.textFieldHeight{
+        didSet{
+            setTextFieldHeight()
+        }
+    }
+    var textfieldSpacing : Int = TextfieldConstants.textFieldSpacing{
+        didSet{
+            setTextFieldSpacing()
+        }
+    }
+    
+    var textIsSecure: Bool = false{
+        didSet{
+            setTextIsSecure()
+        }
+    }
+    
+    var textFieldborderColorSet = UIColor.clear{
+        didSet{
+            setBorderColor()
+        }
+    }
+    var underlineColorSet = UIColor.clear{
+        didSet{
+            setUnderlineColor()
+        }
+    }
+    var textFieldBorderWidth : CGFloat = 1 {
+        didSet{
+            setBorderWidth()
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -57,45 +93,61 @@ class TestView: UIView,UITextFieldDelegate,DetectBackspaceDelegate {
         touchInterceptorView.addGestureRecognizer(tapGesture)
     }
     
-    public func setTextFieldHeight( height : Int){
-        textFieldHeight = height
+    //MARK: - SETTERS
+    
+    public func setTextFieldHeight(){
         updateTextField()
         invalidateIntrinsicContentSize()
     }
     
-    public func setTextFieldWidth( width : Int){
-        textFieldWidth = width
+    public func setTextFieldWidth(){
         updateTextField()
         invalidateIntrinsicContentSize()
     }
     
-    public func setTextFieldSpacing( spacing : Int){
-        textfieldSpacing = spacing
+    public func setTextFieldSpacing(){
         updateTextfieldSpacing()
         invalidateIntrinsicContentSize()
     }
     
-    public func setBorderColor(borderColor: UIColor){
-        textFieldborderColorSet = borderColor.cgColor
-        updateBorderColor()
+    private func setBorderColor(){
+        if isBoxedEnabled {
+            updateBorderColor()
+        }
     }
     
-    public func setBorderWidth(borderWidth: CGFloat){
-        textFieldBorderWidth = borderWidth
+    public func setBorderWidth(){
         updateBorderWidth()
     }
     
-    public func setUnderlineColor(underlineColor: UIColor){
-        underlineColorSet = underlineColor
-        updateUnderlineColor()
+    public func setUnderlineColor(){
+        if isUnderlineEnabled {
+            updateUnderlineColor()
+        }
     }
     
-    public func setNumberOfTextFields(numberOfTextField:Int, textFieldLayout: String){
+    private func setTextIsSecure(){
+        if textIsSecure {
+            for textfield in arrayOfTextFields{
+                textfield.isSecureTextEntry = true
+            }
+        }
+        else{
+            for textfield in arrayOfTextFields{
+                textfield.isSecureTextEntry = false
+            }
+        }
+    }
+    
+    /**
+     - Parameter numberOfTextField:   Number of fields to be displayed.
+     - Parameter textFieldLayoutIs: boxed/underlined.
+     */
+    public func setNumberOfTextFields(numberOfTextField:Int, textFieldLayoutIs:textFieldLayout){
         for i in 0...numberOfTextField-1 {
             let textField = DetectBackspaceTextField(frame: CGRect(x: posX + (textFieldWidth*i) + (textfieldSpacing*i), y: posY, width: textFieldWidth, height: textFieldHeight))
             
             let underline = UIView(frame: CGRect(x: posX + (textFieldWidth*i) + (textFieldHeight*i), y: posY + textFieldHeight, width: textFieldWidth, height: 1))
-            print("posY \(posY) textfieldHeight \(textFieldHeight)")
             textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: UIControlEvents.editingChanged)
             
             textField.delegate = self
@@ -110,18 +162,14 @@ class TestView: UIView,UITextFieldDelegate,DetectBackspaceDelegate {
             contentView.addSubview(underline)
         }
         
-        switch textFieldLayout {
-        case "BOXED":
+        switch textFieldLayoutIs {
+        case .BOXED:
             isBoxedEnabled = true
             setupTextfieldLayoutToBoxed()
             break
-        case "UNDERLINED":
+        case .UNDERLINED:
             isUnderlineEnabled = true
             setupTextfieldLayoutToUnderlined()
-            break
-        default:
-            isBoxedEnabled = true
-            setupTextfieldLayoutToBoxed()
             break
         }
         
@@ -159,7 +207,9 @@ class TestView: UIView,UITextFieldDelegate,DetectBackspaceDelegate {
         }
     }
     
-    func updateTextfieldSpacing() {
+    //MARK: - Update Textfield Properties
+    
+    private func updateTextfieldSpacing() {
         for i in 0...arrayOfTextFields.count-2{
             var textFieldFrame:CGRect = arrayOfTextFields[i].frame
             textFieldFrame.origin.x = CGFloat(posX + (textFieldWidth*i) + (textfieldSpacing*i))
@@ -173,7 +223,7 @@ class TestView: UIView,UITextFieldDelegate,DetectBackspaceDelegate {
     
     private func updateBorderColor(){
         for textField in arrayOfTextFields{
-            textField.layer.borderColor = textFieldborderColorSet
+            textField.layer.borderColor = textFieldborderColorSet.cgColor
         }
     }
     
@@ -183,42 +233,30 @@ class TestView: UIView,UITextFieldDelegate,DetectBackspaceDelegate {
         }
     }
     
-    public func textIsSecure(secure : Bool){
-        if secure {
-            for textfield in arrayOfTextFields{
-                textfield.isSecureTextEntry = true
-            }
-        }
-        else{
-            for textfield in arrayOfTextFields{
-                textfield.isSecureTextEntry = false
-            }
-        }
-    }
-    
+    /**
+     Update textfield height and width.
+    */
     private func updateTextField(){
         for textField in arrayOfTextFields{
             let newSize = CGSize(width: textFieldWidth, height:  textFieldHeight)
             let newFrame = CGRect(origin: textField.frame.origin, size: newSize)
             textField.frame = newFrame
         }
-        for underline in arrayOfUnderline{
-            let newFrame = CGRect(x: underline.frame.origin.x, y: CGFloat(posY + textFieldHeight), width: CGFloat(textFieldWidth), height: 1)
-            underline.frame = newFrame
+        if isUnderlineEnabled {
+            for underline in arrayOfUnderline{
+                let newFrame = CGRect(x: underline.frame.origin.x, y: CGFloat(posY + textFieldHeight), width: CGFloat(textFieldWidth), height: 1)
+                underline.frame = newFrame
+            }
         }
     }
     
     private func updateBorderWidth(){
-        for textField in arrayOfTextFields{
-            textField.layer.borderWidth = textFieldBorderWidth
+        if isBoxedEnabled {
+            for textField in arrayOfTextFields{
+                textField.layer.borderWidth = textFieldBorderWidth
+            }
         }
     }
-//    
-//    private func updateFontsize{
-//        for textField in arrayOfTextFields{
-//            textField.font
-//        }
-//    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -253,9 +291,11 @@ class TestView: UIView,UITextFieldDelegate,DetectBackspaceDelegate {
         }
     }
     
+    //MARK: - Setup Appearance/Layout
+
     func setupTextfieldLayoutToBoxed() {
         for textfield in arrayOfTextFields{
-            textfield.layer.borderColor = textFieldborderColorSet
+            textfield.layer.borderColor = textFieldborderColorSet.cgColor
             textfield.layer.cornerRadius = 4
             textfield.layer.borderWidth = textFieldBorderWidth
         }
@@ -288,7 +328,6 @@ class TestView: UIView,UITextFieldDelegate,DetectBackspaceDelegate {
     override var intrinsicContentSize: CGSize {
         let textFieldTotalWidth = CGFloat(textFieldWidth) * CGFloat(arrayOfTextFields.count-1)
         let spacingTotalWidth = CGFloat(textfieldSpacing * (arrayOfTextFields.count - 2))
-        print("\(textFieldHeight)")
         
         return CGSize(width: (textFieldTotalWidth + spacingTotalWidth), height: CGFloat(textFieldHeight + TextfieldConstants.underLineHeight))
     }
