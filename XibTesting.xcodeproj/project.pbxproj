@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		016297C1572E8D008E535091 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28340CAF3A01DC736D5AA26A /* CoreText.framework */; };
+		1EF0FD733B11FE76385271F8 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C48AD6B420B3B637A7836C0 /* CoreMedia.framework */; };
 		496DB6C31F6BD0C90046F06F /* TextfieldTemplate.xib in Resources */ = {isa = PBXBuildFile; fileRef = 496DB6C21F6BD0C90046F06F /* TextfieldTemplate.xib */; };
 		49A9D8491F62986C001B827F /* DetectBackspaceTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A9D8481F62986C001B827F /* DetectBackspaceTextField.m */; };
 		49D1975B1F5FE97500B0426C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D1975A1F5FE97500B0426C /* AppDelegate.swift */; };
@@ -16,9 +18,19 @@
 		49D197651F5FE97500B0426C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49D197631F5FE97500B0426C /* LaunchScreen.storyboard */; };
 		49D1976D1F5FE99B00B0426C /* TestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49D1976C1F5FE99B00B0426C /* TestView.xib */; };
 		49D1976F1F5FEA1E00B0426C /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D1976E1F5FEA1E00B0426C /* TestView.swift */; };
+		60A6263824F1A1A39865F09D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F39CE2A2AF7B30F75ED56EC /* QuartzCore.framework */; };
+		67AD93AC1FDE73AFA7F2AD60 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6920687138F729F1738CB00 /* AssetsLibrary.framework */; };
+		9D5A35C162565552A58A33C9 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F951973335FDBAF97E55EB23 /* CoreTelephony.framework */; };
+		A086A6DBF1B7671A6107A29C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA702281042B6DD36A9E0579 /* AVFoundation.framework */; };
+		A2D5DCE427EAC613CE2B6648 /* BuddyBuildSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CC377DE95697DE8C0840D92 /* BuddyBuildSDK.framework */; };
+		DE0C792EE44E14389C726100 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7494A5C8F56F092B586E59EB /* CoreVideo.framework */; };
+		E66F55395F7CD43D6BA35CC9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C81E41A2E247E4876DE4AD8F /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		28340CAF3A01DC736D5AA26A /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		3CC377DE95697DE8C0840D92 /* BuddyBuildSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BuddyBuildSDK.framework; path = BuddyBuildSDK.framework; sourceTree = "<group>"; };
+		3F39CE2A2AF7B30F75ED56EC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		496DB6C21F6BD0C90046F06F /* TextfieldTemplate.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextfieldTemplate.xib; sourceTree = "<group>"; };
 		49A9D8431F629842001B827F /* XibTesting-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XibTesting-Bridging-Header.h"; sourceTree = "<group>"; };
 		49A9D8471F62986B001B827F /* DetectBackspaceTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetectBackspaceTextField.h; sourceTree = "<group>"; };
@@ -32,6 +44,12 @@
 		49D197661F5FE97500B0426C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		49D1976C1F5FE99B00B0426C /* TestView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestView.xib; sourceTree = "<group>"; };
 		49D1976E1F5FEA1E00B0426C /* TestView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		7494A5C8F56F092B586E59EB /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		8C48AD6B420B3B637A7836C0 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		A6920687138F729F1738CB00 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		C81E41A2E247E4876DE4AD8F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		EA702281042B6DD36A9E0579 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		F951973335FDBAF97E55EB23 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +57,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2D5DCE427EAC613CE2B6648 /* BuddyBuildSDK.framework in Frameworks */,
+				67AD93AC1FDE73AFA7F2AD60 /* AssetsLibrary.framework in Frameworks */,
+				016297C1572E8D008E535091 /* CoreText.framework in Frameworks */,
+				9D5A35C162565552A58A33C9 /* CoreTelephony.framework in Frameworks */,
+				E66F55395F7CD43D6BA35CC9 /* SystemConfiguration.framework in Frameworks */,
+				60A6263824F1A1A39865F09D /* QuartzCore.framework in Frameworks */,
+				A086A6DBF1B7671A6107A29C /* AVFoundation.framework in Frameworks */,
+				1EF0FD733B11FE76385271F8 /* CoreMedia.framework in Frameworks */,
+				DE0C792EE44E14389C726100 /* CoreVideo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,6 +77,7 @@
 			children = (
 				49D197591F5FE97500B0426C /* XibTesting */,
 				49D197581F5FE97500B0426C /* Products */,
+				9144B2AD9C7A310A653E9E9D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -78,6 +106,22 @@
 				496DB6C21F6BD0C90046F06F /* TextfieldTemplate.xib */,
 			);
 			path = XibTesting;
+			sourceTree = "<group>";
+		};
+		9144B2AD9C7A310A653E9E9D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3CC377DE95697DE8C0840D92 /* BuddyBuildSDK.framework */,
+				A6920687138F729F1738CB00 /* AssetsLibrary.framework */,
+				28340CAF3A01DC736D5AA26A /* CoreText.framework */,
+				F951973335FDBAF97E55EB23 /* CoreTelephony.framework */,
+				C81E41A2E247E4876DE4AD8F /* SystemConfiguration.framework */,
+				3F39CE2A2AF7B30F75ED56EC /* QuartzCore.framework */,
+				EA702281042B6DD36A9E0579 /* AVFoundation.framework */,
+				8C48AD6B420B3B637A7836C0 /* CoreMedia.framework */,
+				7494A5C8F56F092B586E59EB /* CoreVideo.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,6 +330,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = FT5TU5KEM8;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = XibTesting/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -303,6 +351,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = FT5TU5KEM8;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = XibTesting/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
